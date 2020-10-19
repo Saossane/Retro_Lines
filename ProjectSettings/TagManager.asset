@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
+  - Background
   - ground
-  - 
-  - 
-  - 
-  - 
+  - Middleground
+  - player
+  - foreground
   - 
   - 
   - 
@@ -41,6 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3708262877
+    locked: 0
   - name: ground
-    uniqueID: 3777983487
+    uniqueID: 3742610709
+    locked: 0
+  - name: middleground
+    uniqueID: 2421785329
+    locked: 0
+  - name: foreground
+    uniqueID: 814334337
+    locked: 0
+  - name: player
+    uniqueID: 3574999733
     locked: 0
