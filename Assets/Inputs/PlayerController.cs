@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Player.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Inputs/PlayerController.inputactions'
 
 using System;
 using System.Collections;
@@ -6,22 +6,30 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @Player : IInputActionCollection, IDisposable
+public class @PlayerController : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @Player()
+    public @PlayerController()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""Player"",
+    ""name"": ""PlayerController"",
     ""maps"": [
         {
-            ""name"": ""New action map"",
-            ""id"": ""2a29f9da-dda8-4c47-af5a-38ec733f7264"",
+            ""name"": ""Main"",
+            ""id"": ""d9064c18-0022-4f47-9d72-614e8e882270"",
             ""actions"": [
                 {
                     ""name"": ""Move"",
                     ""type"": ""Button"",
-                    ""id"": ""2e5d9651-5666-46ba-8238-98b8cddffc47"",
+                    ""id"": ""e33dc115-d260-491e-9650-81bb9c4ed1a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""077c7f5c-dce2-4b6d-aa4b-3ad9299e91c6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -30,7 +38,7 @@ public class @Player : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": ""Arrows"",
-                    ""id"": ""0500b829-be0e-4351-8bdf-fedc21610d27"",
+                    ""id"": ""f8ceab50-6aa8-4e93-adf7-fd5b7d87686f"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -41,7 +49,7 @@ public class @Player : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""58ac5064-863a-40c8-a8c6-a29da22469c6"",
+                    ""id"": ""37a4aa80-6959-4fb6-b161-1b3239346005"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -52,7 +60,7 @@ public class @Player : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""b4931d6d-7e2b-4530-aabb-de22a7694424"",
+                    ""id"": ""442acb9d-c63a-4aa4-bcea-8b3872a3e7b6"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -63,7 +71,7 @@ public class @Player : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""946f4e48-3abd-49fa-b75d-81917b9f8597"",
+                    ""id"": ""bd279fd8-90aa-40dd-9d5f-872ed945943e"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -74,7 +82,7 @@ public class @Player : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""412cc10c-9c4f-4da8-af92-42cc00eb12ec"",
+                    ""id"": ""a8dffcf9-ed70-4562-abae-0ece7b8e309d"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -82,15 +90,27 @@ public class @Player : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67f07416-faae-4074-b543-9293330810b0"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // New action map
-        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_Move = m_Newactionmap.FindAction("Move", throwIfNotFound: true);
+        // Main
+        m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
+        m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
+        m_Main_Jump = m_Main.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -137,40 +157,49 @@ public class @Player : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // New action map
-    private readonly InputActionMap m_Newactionmap;
-    private INewactionmapActions m_NewactionmapActionsCallbackInterface;
-    private readonly InputAction m_Newactionmap_Move;
-    public struct NewactionmapActions
+    // Main
+    private readonly InputActionMap m_Main;
+    private IMainActions m_MainActionsCallbackInterface;
+    private readonly InputAction m_Main_Move;
+    private readonly InputAction m_Main_Jump;
+    public struct MainActions
     {
-        private @Player m_Wrapper;
-        public NewactionmapActions(@Player wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Newactionmap_Move;
-        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        private @PlayerController m_Wrapper;
+        public MainActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Main_Move;
+        public InputAction @Jump => m_Wrapper.m_Main_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
-        public void SetCallbacks(INewactionmapActions instance)
+        public static implicit operator InputActionMap(MainActions set) { return set.Get(); }
+        public void SetCallbacks(IMainActions instance)
         {
-            if (m_Wrapper.m_NewactionmapActionsCallbackInterface != null)
+            if (m_Wrapper.m_MainActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnMove;
+                @Move.started -= m_Wrapper.m_MainActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnMove;
+                @Jump.started -= m_Wrapper.m_MainActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnJump;
             }
-            m_Wrapper.m_NewactionmapActionsCallbackInterface = instance;
+            m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
-    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
-    public interface INewactionmapActions
+    public MainActions @Main => new MainActions(this);
+    public interface IMainActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
