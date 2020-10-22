@@ -14,7 +14,10 @@ public class CharacterController : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     //this variable refers to a RigidBody2D Component;
 
-
+    private Animator myAnimator;
+    //this variable refers to an Animator Component;
+    private SpriteRenderer myRenderer;
+    //this variable refers to a SpriteRenderer Component;
     private Vector2 stickDirection;
     private bool isOnGround = false;
     //this bool will verify if the player is on the ground;
@@ -71,7 +74,8 @@ public class CharacterController : MonoBehaviour
         //we assign each Component to it's variable;
         //we're taking them from the GameObject which holds the script;
         myRigidbody2D = GetComponent<Rigidbody2D>();
-       
+        myAnimator = GetComponent<Animator>();
+        myRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -79,12 +83,33 @@ public class CharacterController : MonoBehaviour
     {
         var direction = new Vector2 { x = stickDirection.x, y = 0 };
 
-        //we set up the movement by specifying the Player will go faster till it reaches their maximum speed;
+        
         if (myRigidbody2D.velocity.sqrMagnitude < maxSpeed)
         {
             myRigidbody2D.AddForce(direction * speed);
         }
-       
+
+    
+        var isRunning = isOnGround && Mathf.Abs(myRigidbody2D.velocity.x) > 0.1f;
+        myAnimator.SetBool("IsRunning", isRunning);
+
+        myAnimator.SetBool("IsGrounded", isOnGround);
+        Flip();
+    }
+
+    private void Flip()
+    {
+      
+        if (stickDirection.x < -0.1f)
+        {
+            isFacingLeft = true;
+        }
+
+        if (stickDirection.x > 0.1f)
+        {
+            isFacingLeft = false;
+        }
+        myRenderer.flipX = isFacingLeft;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
