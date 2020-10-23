@@ -35,7 +35,7 @@ private IEnumerator Load()
     loading.allowSceneActivation = false;
     //We don't automatically load the scene when it's fully charged;
 
-    while (loading.progress < 0.9f)
+    while (loading.progress < 2.1f)
     {//We're cheking every frame till the scene is completely loaded;
         yield return new WaitForSeconds(animationTime);
         //Yield = waiting;
