@@ -47,7 +47,7 @@ public class CharacterController : MonoBehaviour
             //this is the jump, we can change the force of the jump in the inspector since it's a serialized variable;
             isOnGround = false;
             myAnimator.SetBool("IsJumping", true);
-            Debug.Log("saut");
+           // Debug.Log("saut");
             //since the player is jumping (and not touching the ground anymore), we set up the "isOnGround" boolean to false;
             //Is it on ground ? NO -> False;
         }
@@ -126,17 +126,8 @@ public class CharacterController : MonoBehaviour
 
         if (touchingGround && touchFromAbove)
         {
-            // Booléen vérifiant si le layer sur lequel on a atteri appartient bien au layerMask "ground"
-            var touchGround = ground == (ground | (1 << other.gameObject.layer));
-            // Booléen vérifiant que l'on collisionne avec une surface horizontale
-            var touchFromAbove = other.contacts[0].normal == Vector2.up;
-            if (touchGround && touchFromAbove)
 
-            { }
-                if (other.gameObject.CompareTag("Ground") )
-        //if the Player lands on a "Ground" layer which has an horizontal surface,
-        //the boolean will be set to true;
-        {
+            myAnimator.SetBool("IsJumping", false);
             isOnGround = true;
         }
 
