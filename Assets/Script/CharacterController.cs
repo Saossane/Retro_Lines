@@ -23,7 +23,7 @@ public class CharacterController : MonoBehaviour
     //this bool will verify if the player is on the ground;
     private bool isFacingLeft = true;
     //this bool will check which direction the Player's facing;
-
+    private bool myTouch = true;
 
 
     private void OnEnable()
@@ -84,18 +84,28 @@ public class CharacterController : MonoBehaviour
     void FixedUpdate()
     {
         var direction = new Vector2 { x = stickDirection.x, y = 0 };
+       RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
 
-        
+        if (hit.collider != null)
+        {
+
+            myTouch = true;
+
+        }
+
+
         if (myRigidbody2D.velocity.sqrMagnitude < maxSpeed)
         {
             myRigidbody2D.AddForce(direction * speed);
         }
+ 
+        
+      
 
-    
         var isRunning = isOnGround && Mathf.Abs(myRigidbody2D.velocity.x) > 0.1f;
         myAnimator.SetBool("IsRunning", isRunning);
         myAnimator.SetBool("IsGrounded", isOnGround);
-       
+        
         myAnimator.SetBool("IsGrounded", isOnGround);
         Flip();
         
@@ -122,9 +132,11 @@ public class CharacterController : MonoBehaviour
         //we're checking if the Player lands on a GameObject being on the "Ground" layer; 
         var touchingGround = ground == (ground | (1 << other.gameObject.layer));
         //we're cheking if the Player lands on a horizontal surface;
-        var touchFromAbove = other.contacts[0].normal.y > other.contacts[0].normal.x;
+        //var touchFromAbove = other.contacts[0].normal.y > other.contacts[0].normal.x;
 
-        if (touchingGround && touchFromAbove)
+     
+
+        if (touchingGround && myTouch)
         {
 
             myAnimator.SetBool("IsJumping", false);
