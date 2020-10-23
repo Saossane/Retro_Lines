@@ -14,16 +14,13 @@ public class CharacterController : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     //this variable refers to a RigidBody2D Component;
 
-    private Animator myAnimator;
-    //this variable refers to an Animator Component;
-    private SpriteRenderer myRenderer;
-    //this variable refers to a SpriteRenderer Component;
+
     private Vector2 stickDirection;
     private bool isOnGround = false;
     //this bool will verify if the player is on the ground;
     private bool isFacingLeft = true;
     //this bool will check which direction the Player's facing;
-    private bool myTouch = true;
+
 
 
     private void OnEnable()
@@ -46,8 +43,6 @@ public class CharacterController : MonoBehaviour
             myRigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             //this is the jump, we can change the force of the jump in the inspector since it's a serialized variable;
             isOnGround = false;
-            myAnimator.SetBool("IsJumping", true);
-           // Debug.Log("saut");
             //since the player is jumping (and not touching the ground anymore), we set up the "isOnGround" boolean to false;
             //Is it on ground ? NO -> False;
         }
@@ -76,55 +71,20 @@ public class CharacterController : MonoBehaviour
         //we assign each Component to it's variable;
         //we're taking them from the GameObject which holds the script;
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
-        myRenderer = GetComponent<SpriteRenderer>();
+       
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         var direction = new Vector2 { x = stickDirection.x, y = 0 };
-       RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
 
-        if (hit.collider != null)
-        {
-
-            myTouch = true;
-
-        }
-
-
+        //we set up the movement by specifying the Player will go faster till it reaches their maximum speed;
         if (myRigidbody2D.velocity.sqrMagnitude < maxSpeed)
         {
             myRigidbody2D.AddForce(direction * speed);
         }
- 
-        
-      
-
-        var isRunning = isOnGround && Mathf.Abs(myRigidbody2D.velocity.x) > 0.1f;
-        myAnimator.SetBool("IsRunning", isRunning);
-        myAnimator.SetBool("IsGrounded", isOnGround);
-        
-        myAnimator.SetBool("IsGrounded", isOnGround);
-        Flip();
-        
-    }
-     
-
-    private void Flip()
-    {
-      
-        if (stickDirection.x < -0.1f)
-        {
-            isFacingLeft = true;
-        }
-
-        if (stickDirection.x > 0.1f)
-        {
-            isFacingLeft = false;
-        }
-        myRenderer.flipX = isFacingLeft;
+       
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -132,17 +92,13 @@ public class CharacterController : MonoBehaviour
         //we're checking if the Player lands on a GameObject being on the "Ground" layer; 
         var touchingGround = ground == (ground | (1 << other.gameObject.layer));
         //we're cheking if the Player lands on a horizontal surface;
-        //var touchFromAbove = other.contacts[0].normal.y > other.contacts[0].normal.x;
+        var touchFromAbove = other.contacts[0].normal.y > other.contacts[0].normal.x;
 
-     
-
-        if (touchingGround && myTouch)
+        if (touchingGround && touchFromAbove)
+        //if the Player lands on a "Ground" layer which has an horizontal surface,
+        //the boolean will be set to true;
         {
-
-            myAnimator.SetBool("IsJumping", false);
             isOnGround = true;
         }
-
-       
     }
 }
