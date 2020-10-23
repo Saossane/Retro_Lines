@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: DesertRuleTile
+  m_Name: DesertRuleTiles
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 7252398054454285853, guid: 151e72687b706e64eb2b6fc6a8aae369, type: 3}
   m_DefaultGameObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 0
     m_Sprites:
-    - {fileID: 7591124465234370297, guid: 151e72687b706e64eb2b6fc6a8aae369, type: 3}
+    - {fileID: -1810370295536945408, guid: 151e72687b706e64eb2b6fc6a8aae369, type: 3}
     m_GameObject: {fileID: 0}
     m_AnimationSpeed: 1
     m_PerlinScale: 0.5
