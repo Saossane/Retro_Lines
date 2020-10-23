@@ -92,8 +92,6 @@ public class CharacterController : MonoBehaviour
     
         var isRunning = isOnGround && Mathf.Abs(myRigidbody2D.velocity.x) > 0.1f;
         myAnimator.SetBool("IsRunning", isRunning);
-
-        myAnimator.SetBool("IsGrounded", isOnGround);
         Flip();
     }
 
