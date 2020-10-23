@@ -18,7 +18,7 @@ TagManager:
   - Middleground
   - player
   - foreground
-  - 
+  - ForestGround
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 3574999733
+    locked: 0
+  - name: ForestGround
+    uniqueID: 1103784655
     locked: 0
